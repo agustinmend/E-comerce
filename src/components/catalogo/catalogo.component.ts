@@ -1,8 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductoService } from '../services/producto.service';
-import { CarritoService } from '../services/carrito.service';
-import { Producto } from '../models/producto.model';
+import { ProductoService } from '../../services/producto.service';
+import { CarritoService } from '../../services/carrito.service';
+import { Producto } from '../../models/producto.model';
 
 @Component({
   selector: 'app-catalogo',

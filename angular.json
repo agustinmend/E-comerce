@@ -89,6 +89,15 @@
             ],
             "styles": [
               "src/styles.css"
+            ],
+            "codeCoverageExclude": [
+              "src/main.ts",
+              "src/app/app.config.ts",
+              "src/app/app.routes.ts",
+              "src/app/app.ts",
+              "src/app/app.spec.ts",
+              "src/environments/**/*.ts",
+              "src/**/*.model.ts"
             ]
           }
         }

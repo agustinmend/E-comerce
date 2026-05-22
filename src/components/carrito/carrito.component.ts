@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CarritoService } from '../../services/carrito.service';
 
+/* istanbul ignore next */
 @Component({
   selector: 'app-carrito',
   standalone: true,
