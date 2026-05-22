@@ -1,0 +1,46 @@
+<section class="catalogo">
+  <header class="catalogo__cabecera">
+    <h1 class="catalogo__titulo">Colección Esencial</h1>
+    <p class="catalogo__descripcion">
+      Piezas atemporales diseñadas para durar. Cada producto es seleccionado cuidadosamente por su calidad, funcionalidad y estética minimalista.
+    </p>
+  </header>
+
+  @if (cargando) {
+    <div class="catalogo__cargando">Cargando productos...</div>
+  } @else {
+    <div class="catalogo__cuadricula">
+      @for (producto of productos; track producto.identificacion) {
+        <article class="tarjeta-producto">
+          
+          <div class="tarjeta-producto__media">
+            <img 
+              [src]="producto.imagenes?.length ? producto.imagenes[0] : 'assets/placeholder.jpg'" 
+              [alt]="producto.nombre" 
+              class="tarjeta-producto__imagen"
+            >
+            
+            @if (producto.existencias === 0) {
+              <div class="tarjeta-producto__etiqueta tarjeta-producto__etiqueta--agotado">
+                AGOTADO
+              </div>
+            }
+          </div>
+
+          <div class="tarjeta-producto__info">
+            <h2 class="tarjeta-producto__nombre">{{ producto.nombre }}</h2>
+            <p class="tarjeta-producto__precio">€{{ producto.precio }}</p>
+          </div>
+
+          <button 
+            class="tarjeta-producto__boton tarjeta-producto__boton--carrito"
+            [disabled]="producto.existencias === 0"
+            (click)="agregarAlCarrito(producto)">
+            Agregar al carrito
+          </button>
+          
+        </article>
+      }
+    </div>
+  }
+</section>
