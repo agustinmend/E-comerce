@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductoService } from '../services/producto.service';
+import { CarritoService } from '../services/carrito.service';
 import { Producto } from '../models/producto.model';
 
 @Component({
@@ -15,6 +16,7 @@ export class CatalogoComponent implements OnInit {
   cargando: boolean = true;
   
   private productoService = inject(ProductoService);
+  private carritoService = inject(CarritoService);
 
   ngOnInit(): void {
     this.cargarCatalogo();
@@ -25,15 +27,15 @@ export class CatalogoComponent implements OnInit {
       this.cargando = true;
       this.productos = await this.productoService.obtenerProductos();
     } catch (error) {
-      console.error('Fallo la carga del catálogo', error);
+      console.error('Fallo la carga del catálogo:', error);
     } finally {
       this.cargando = false;
     }
   }
 
   agregarAlCarrito(producto: Producto): void {
-    if (producto.existencias > 0) {
-      console.log(`Agregando ${producto.nombre} al carrito...`);
+    if (producto.stock > 0) {
+      this.carritoService.agregarProducto(producto);
     }
   }
 }

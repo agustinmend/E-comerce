@@ -8,19 +8,23 @@
 
   @if (cargando) {
     <div class="catalogo__cargando">Cargando productos...</div>
+  } @else if (productos.length === 0) {
+    <div class="catalogo__vacio">
+      <p>No hay productos disponibles en este momento.</p>
+    </div>
   } @else {
     <div class="catalogo__cuadricula">
-      @for (producto of productos; track producto.identificacion) {
+      @for (producto of productos; track producto.id) {
         <article class="tarjeta-producto">
           
           <div class="tarjeta-producto__media">
             <img 
-              [src]="producto.imagenes?.length ? producto.imagenes[0] : 'assets/placeholder.jpg'" 
-              [alt]="producto.nombre" 
+              [src]="producto.images?.length ? producto.images[0] : 'assets/placeholder.jpg'" 
+              [alt]="producto.name" 
               class="tarjeta-producto__imagen"
             >
             
-            @if (producto.existencias === 0) {
+            @if (producto.stock === 0) {
               <div class="tarjeta-producto__etiqueta tarjeta-producto__etiqueta--agotado">
                 AGOTADO
               </div>
@@ -28,13 +32,13 @@
           </div>
 
           <div class="tarjeta-producto__info">
-            <h2 class="tarjeta-producto__nombre">{{ producto.nombre }}</h2>
-            <p class="tarjeta-producto__precio">€{{ producto.precio }}</p>
+            <h2 class="tarjeta-producto__nombre">{{ producto.name }}</h2>
+            <p class="tarjeta-producto__precio">€{{ producto.price }}</p>
           </div>
 
           <button 
             class="tarjeta-producto__boton tarjeta-producto__boton--carrito"
-            [disabled]="producto.existencias === 0"
+            [disabled]="producto.stock === 0"
             (click)="agregarAlCarrito(producto)">
             Agregar al carrito
           </button>

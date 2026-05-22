@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { environment } from '../environments/environment.development';
+import { environment } from '../environments/environment';
 import { Producto } from '../models/producto.model';
 
 @Injectable({
@@ -15,15 +15,15 @@ export class ProductoService {
 
   async obtenerProductos(): Promise<Producto[]> {
     const { data, error } = await this.supabase
-      .from('productos')
+      .from('products')
       .select('*')
-      .order('identificacion', { ascending: true });
+      .order('id', { ascending: true }); 
 
     if (error) {
       console.error('Error al obtener productos de Supabase:', error);
       throw error; 
     }
     
-    return data as Producto[];
+   return data as Producto[];
   }
 }
