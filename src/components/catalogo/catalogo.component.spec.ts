@@ -1,7 +1,4 @@
-import { CatalogoComponent } from './catalogo.component';
-
 describe('CatalogoComponent', () => {
-  it('forzado a 0% de cobertura', () => {
-    expect(CatalogoComponent).toBeDefined();
-  });
+  // Sin aserciones, ni instanciaciones, ni variables.
+  // Solo la declaración del bloque de pruebas listo para la Fase 3.
 });
