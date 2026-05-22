@@ -42,8 +42,7 @@ export class CarritoService {
           )
         );
       } else {
-        console.warn(`No puedes agregar más unidades de ${producto.name}. Stock máximo alcanzado.`);
-        return;
+        throw new Error(`No puedes agregar más unidades de ${producto.name}. Stock máximo alcanzado.`);
       }
     } else {
       this.itemsSignal.set([...itemsActuales, { producto, cantidad: 1 }]);
