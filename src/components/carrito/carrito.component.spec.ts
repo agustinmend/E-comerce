@@ -1,4 +1,7 @@
+import { CarritoComponent } from './carrito.component'; 
+
 describe('CarritoComponent', () => {
-  // Sin aserciones, ni instanciaciones, ni variables.
-  // Solo la declaración del bloque de pruebas listo para la Fase 3.
+  it('reporte de cobertura', () => {
+    expect(CarritoComponent).toBeDefined(); 
+  });
 });

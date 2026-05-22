@@ -1,4 +1,7 @@
+import { CatalogoComponent } from "./catalogo.component"; 
+
 describe('CatalogoComponent', () => {
-  // Sin aserciones, ni instanciaciones, ni variables.
-  // Solo la declaración del bloque de pruebas listo para la Fase 3.
+  it('reporte de cobertura', () => {
+    expect(CatalogoComponent).toBeDefined(); 
+  });
 });

@@ -1,4 +1,6 @@
+import { ProductoService } from "./producto.service";
 describe('ProductoService', () => {
-  // Sin aserciones, ni instanciaciones, ni variables.
-  // Solo la declaración del bloque de pruebas listo para la Fase 3.
+  it('reporte de cobertura', () => {
+    expect(ProductoService).toBeDefined(); 
+  });
 });
