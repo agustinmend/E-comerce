@@ -15,8 +15,8 @@ export class CatalogoComponent implements OnInit {
   productos: Producto[] = [];
   cargando: boolean = true;
   
-  private productoService = inject(ProductoService);
-  private carritoService = inject(CarritoService);
+  private readonly productoService = inject(ProductoService);
+  private readonly carritoService = inject(CarritoService);
 
   ngOnInit(): void {
     this.cargarCatalogo();
