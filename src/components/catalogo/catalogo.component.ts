@@ -26,9 +26,11 @@ export class CatalogoComponent implements OnInit {
     try {
       this.cargando = true;
       this.productos = await this.productoService.obtenerProductos();
-    } catch (error) {
+    }
+    catch (error) {
       console.error('Fallo la carga del catálogo:', error);
-    } finally {
+    } 
+    finally {
       this.cargando = false;
     }
   }
