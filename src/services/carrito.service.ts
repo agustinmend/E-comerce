@@ -77,14 +77,11 @@ export class CarritoService {
   }
 
   validarDatosEnvio(datos: DatosEnvio): boolean {
-    if (!datos.nombre || datos.nombre.trim() === '') {
-      throw new Error('El campo nombre es obligatorio.');
-    }
-    if (!datos.telefono || datos.telefono.trim() === '') {
-      throw new Error('El campo telefono es obligatorio.');
-    }
-    if (!datos.direccion || datos.direccion.trim() === '') {
-      throw new Error('El campo direccion es obligatorio.');
+    const camposRequeridos: (keyof DatosEnvio)[] = ['nombre', 'telefono', 'direccion'];
+    for (const campo of camposRequeridos) {
+      if (!datos[campo] || datos[campo].trim() === '') {
+        throw new Error(`El campo ${campo} es obligatorio.`);
+      }
     }
     return true;
   }
