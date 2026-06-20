@@ -51,21 +51,24 @@ export class CarritoService {
     this.abrir();
   }
 
-//  actualizarCantidad(productoId: number, nuevaCantidad: number): void {
-//    if (nuevaCantidad <= 0) {
-//      this.eliminarProducto(productoId);
-//      return;
-//    }
-//
-//    const itemsActuales = this.itemsSignal();
-//    const item = itemsActuales.find(i => i.producto.id === productoId);
-//
-//    if (item && nuevaCantidad <= item.producto.stock) {
-//     this.itemsSignal.set(
-//        itemsActuales.map(i => i.producto.id === productoId ? { ...i, cantidad: nuevaCantidad } : i)
-//      );
-//    }
-//  }
+  actualizarCantidad(productoId: number, nuevaCantidad: number): void {
+    if (nuevaCantidad <= 0) {
+      this.eliminarProducto(productoId);
+      return;
+    }
+
+    const itemsActuales = this.itemsSignal();
+    const item = itemsActuales.find(i => i.producto.id === productoId);
+
+    if (item) {
+      if (nuevaCantidad > item.producto.stock) {
+        throw new Error(`Stock insuficiente. Solo hay ${item.producto.stock} unidades disponibles.`);
+      }
+     this.itemsSignal.set(
+        itemsActuales.map(i => i.producto.id === productoId ? { ...i, cantidad: nuevaCantidad } : i)
+      );
+    }
+  }
 
   eliminarProducto(productoId: number): void {
     this.itemsSignal.set(this.itemsSignal().filter(item => item.producto.id !== productoId));
