@@ -1,18 +1,12 @@
-import { Injectable } from '@angular/core';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { environment } from '../environments/environment';
+import { Injectable, inject } from '@angular/core';
 import { Producto } from '../models/producto.model';
+import { SupabaseService } from './supabase.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductoService {
-  private readonly supabase: SupabaseClient;
-
-  constructor() {
-    this.supabase = createClient(environment.supabaseUrl, environment.supabaseAnonKey);
-  }
-
+  private readonly supabase = inject(SupabaseService).cliente;
   async obtenerProductos(): Promise<Producto[]> {
     const { data, error } = await this.supabase
       .from('products')
