@@ -60,4 +60,12 @@ describe('CarritoService', () => {
     expect(service.items().length).toBe(0);
     expect(service.cantidadTotal()).toBe(0);
   });
+
+  it('debería vaciar la lista de items y el subtotal a 0', () => {
+    service.agregarProducto(mockProducto);
+    expect(service.items().length).toBe(1);
+    service.vaciarCarrito();
+    expect(service.items().length).toBe(0);
+    expect(service.subtotal()).toBe(0);
+  });
 });
