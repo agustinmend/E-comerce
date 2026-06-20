@@ -70,4 +70,7 @@ export class CarritoService {
   eliminarProducto(productoId: number): void {
     this.itemsSignal.set(this.itemsSignal().filter(item => item.producto.id !== productoId));
   }
+  vaciarCarrito(): void {
+    this.itemsSignal.set([]);
+  }
 }
