@@ -68,4 +68,12 @@ describe('CarritoService', () => {
     expect(service.items().length).toBe(0);
     expect(service.subtotal()).toBe(0);
   });
+
+  it('HU-04: Debe lanzar un error si se intenta actualizar a una cantidad mayor al stock', () => {
+    service.agregarProducto(mockProducto);    
+    expect(() => {
+      service.actualizarCantidad(1, 6);
+    }).toThrowError(`Stock insuficiente. Solo hay ${mockProducto.stock} unidades disponibles.`);
+    expect(service.items()[0].cantidad).toBe(1); 
+  });
 });
