@@ -34,8 +34,6 @@ export class CatalogoComponent implements OnInit {
   }
 
   agregarAlCarrito(producto: Producto): void {
-    if (producto.stock > 0) {
-      this.carritoService.agregarProducto(producto);
-    }
+    this.carritoService.agregarProducto(producto);
   }
 }
