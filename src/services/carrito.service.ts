@@ -56,18 +56,15 @@ export class CarritoService {
       this.eliminarProducto(productoId);
       return;
     }
-
     const itemsActuales = this.itemsSignal();
     const item = itemsActuales.find(i => i.producto.id === productoId);
-
-    if (item) {
-      if (nuevaCantidad > item.producto.stock) {
-        throw new Error(`Stock insuficiente. Solo hay ${item.producto.stock} unidades disponibles.`);
-      }
-     this.itemsSignal.set(
-        itemsActuales.map(i => i.producto.id === productoId ? { ...i, cantidad: nuevaCantidad } : i)
-      );
+    if (!item) return;
+    if (nuevaCantidad > item.producto.stock) {
+      throw new Error(`Stock insuficiente. Solo hay ${item.producto.stock} unidades disponibles.`);
     }
+    this.itemsSignal.set(
+      itemsActuales.map(i => i.producto.id === productoId ? { ...i, cantidad: nuevaCantidad } : i)
+    );
   }
 
   eliminarProducto(productoId: number): void {
