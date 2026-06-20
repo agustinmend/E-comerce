@@ -1,31 +1,31 @@
-<div class="carrito-drawer" [class.carrito-drawer--abierto]="contextoCarrito.estaAbierto()">
+<div class="carrito-drawer" [class.carrito-drawer--abierto]="estaAbierto()">
   
-  <div class="carrito-drawer__overlay" (click)="contextoCarrito.cerrar()"></div>
+  <div class="carrito-drawer__overlay" (click)="cerrar()"></div>
 
   <aside class="carrito-drawer__contenedor">
     
     <header class="carrito-drawer__cabecera">
       <h2 class="carrito-drawer__titulo">Carrito</h2>
-      <button class="carrito-drawer__boton-cerrar" (click)="contextoCarrito.cerrar()" aria-label="Cerrar carrito">
+      <button class="carrito-drawer__boton-cerrar" (click)="cerrar()" aria-label="Cerrar carrito">
         &times;
       </button>
     </header>
 
     <div class="carrito-drawer__contenido">
-      @if (contextoCarrito.items().length === 0) {
+      @if (items().length === 0) {
         <div class="carrito-drawer__vacio">
           <p>Tu carrito está vacío.</p>
         </div>
       } @else {
         <ul class="carrito-drawer__lista">
-          @for (item of contextoCarrito.items(); track item.producto.id) {
+          @for (item of items(); track item.producto.id) {
             <li class="item-carrito">
               <img [src]="item.producto.images?.[0] || 'assets/placeholder.jpg'" [alt]="item.producto.name" class="item-carrito__imagen">
               
               <div class="item-carrito__detalles">
                 <div class="item-carrito__fila-superior">
                   <h3 class="item-carrito__nombre">{{ item.producto.name }}</h3>
-                  <button class="item-carrito__boton-eliminar" (click)="contextoCarrito.eliminarProducto(item.producto.id)" aria-label="Eliminar producto">
+                  <button class="item-carrito__boton-eliminar" (click)="eliminarProducto(item.producto.id)" aria-label="Eliminar producto">
                     &times;
                   </button>
                 </div>
@@ -33,9 +33,9 @@
                 <p class="item-carrito__precio">€{{ item.producto.price }}</p>
                 
                 <div class="item-carrito__controles">
-                  <button class="item-carrito__boton-cantidad" (click)="contextoCarrito.actualizarCantidad(item.producto.id, item.cantidad - 1)">-</button>
+                  <button class="item-carrito__boton-cantidad" (click)="actualizarCantidad(item.producto.id, item.cantidad - 1)">-</button>
                   <span class="item-carrito__cantidad-valor">{{ item.cantidad }}</span>
-                  <button class="item-carrito__boton-cantidad" (click)="contextoCarrito.actualizarCantidad(item.producto.id, item.cantidad + 1)">+</button>
+                  <button class="item-carrito__boton-cantidad" (click)="actualizarCantidad(item.producto.id, item.cantidad + 1)">+</button>
                 </div>
               </div>
             </li>
@@ -44,11 +44,11 @@
       }
     </div>
 
-    @if (contextoCarrito.items().length > 0) {
+    @if (items().length > 0) {
       <footer class="carrito-drawer__pie">
         <div class="carrito-drawer__total-seccion">
           <span class="carrito-drawer__subtotal-etiqueta">Subtotal</span>
-          <span class="carrito-drawer__subtotal-precio">€{{ contextoCarrito.subtotal() | number:'1.2-2' }}</span>
+          <span class="carrito-drawer__subtotal-precio">€{{ subtotal() | number:'1.2-2' }}</span>
         </div>
         <button class="carrito-drawer__boton-pago">Continuar al pago</button>
       </footer>
