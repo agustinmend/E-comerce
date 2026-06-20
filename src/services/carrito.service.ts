@@ -72,5 +72,6 @@ export class CarritoService {
   }
   vaciarCarrito(): void {
     this.itemsSignal.set([]);
+    this.cerrar()
   }
 }
