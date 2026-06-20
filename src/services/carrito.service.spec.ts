@@ -76,4 +76,11 @@ describe('CarritoService', () => {
     }).toThrowError(`Stock insuficiente. Solo hay ${mockProducto.stock} unidades disponibles.`);
     expect(service.items()[0].cantidad).toBe(1); 
   });
+
+  it('HU-05: Debe lanzar un error específico si faltan datos obligatorios al validar el envío', () => {
+    const datosIncompletos = { nombre: '', telefono: '77712345', direccion: 'Plan 3000' };
+    expect(() => {
+      service.validarDatosEnvio(datosIncompletos);
+    }).toThrowError('El campo nombre es obligatorio.');
+  });
 });
