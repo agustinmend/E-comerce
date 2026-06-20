@@ -1,6 +1,7 @@
 import { Injectable, signal, computed } from '@angular/core';
 import { ItemCarrito } from '../models/carrito.model';
 import { Producto } from '../models/producto.model';
+import { DatosEnvio } from '../models/datos-envio.model';
 
 @Injectable({
   providedIn: 'root'
@@ -73,5 +74,18 @@ export class CarritoService {
   vaciarCarrito(): void {
     this.itemsSignal.set([]);
     this.cerrar()
+  }
+
+  validarDatosEnvio(datos: DatosEnvio): boolean {
+    if (!datos.nombre || datos.nombre.trim() === '') {
+      throw new Error('El campo nombre es obligatorio.');
+    }
+    if (!datos.telefono || datos.telefono.trim() === '') {
+      throw new Error('El campo telefono es obligatorio.');
+    }
+    if (!datos.direccion || datos.direccion.trim() === '') {
+      throw new Error('El campo direccion es obligatorio.');
+    }
+    return true;
   }
 }
